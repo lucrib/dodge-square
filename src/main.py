@@ -22,15 +22,21 @@ window = pygame.display.set_mode(SCREEN_SIZE)
 
 def draw(surface, player, enemy):
     surface.fill((0, 0, 0))
-    player.draw(window)
-    enemy.draw(window)
+    player.draw()
+    enemy.draw()
     pygame.display.update()
 
 
 def main():
     clock = pygame.time.Clock()
-    player = Player(0, 0, PLAYER_SIZE, PLAYER_SIZE)
-    enemy = Enemy(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_SIZE, PLAYER_SIZE)
+    player = Player(0, 0, PLAYER_SIZE, PLAYER_SIZE, window)
+    enemy = Enemy(
+        window.get_rect().centerx,
+        window.get_rect().centery,
+        PLAYER_SIZE,
+        PLAYER_SIZE,
+        window,
+    )
     # Run until the user asks to quit
     running = True
     while running:
